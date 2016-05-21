@@ -2,6 +2,7 @@
 import config
 import random
 import telebot
+from telebot import types
 
 bot = telebot.TeleBot(config.token)
 phrases = ['You talkin to me?', 'You talkin to me?', 'You talkin to me?', 'Well then who the hell else are you talkin’ to?', 'You talkin’ to me?', 'Well I’m the only one here. Who the fuck do you think you’re talkin’ to?', 'Oh yea? Huh?', 'Okay. Huh?']
@@ -15,6 +16,18 @@ def send_welcome(message):
 def send_welcome(message):
     bot.reply_to(message, phrases[random.randint(0, 7)])
 
+@bot.message_handler(commands=['keyboard'])
+def send_welcome(message):
+    markup = types.ReplyKeyboardMarkup()
+    itembtna = types.KeyboardButton('a')
+    itembtnv = types.KeyboardButton('b')
+    itembtnc = types.KeyboardButton('c')
+    itembtnd = types.KeyboardButton('d')
+    itembtne = types.KeyboardButton('e')
+    markup.row(itembtna, itembtnv)
+    markup.row(itembtnc, itembtnd, itembtne)
+    bot.send_message(message.chat.id, "Choose something:", reply_markup=markup)
+
 @bot.message_handler(commands=['help'])
 def send_welcome(message):
     bot.reply_to(message, "What do you want?")
@@ -26,9 +39,14 @@ def handle_docs_audio(message):
 
 
 @bot.message_handler(content_types=["text"])
-def repeat_all_messages(message): # Название функции не играет никакой роли, в принципе
+def repeat_all_messages(message):
     #bot.send_message(message.chat.id, message.text)
-    bot.reply_to(message, phrases[random.randint(0, 7)])
+
+    if message.text == "a":
+        types.ReplyKeyboardHide()
+        bot.send_message(message.chat.id, "You've typed 'a' on virtual keyboard")
+    else:
+        bot.reply_to(message, phrases[random.randint(0, 7)])
 
 
 if __name__ == '__main__':
