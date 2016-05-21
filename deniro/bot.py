@@ -2,6 +2,7 @@
 import config
 import random
 import requests
+#import xml.etree.ElementTree as etree
 import telebot
 from telebot import types
 
@@ -31,7 +32,9 @@ def send_welcome(message):
 
 @bot.message_handler(commands=['request'])
 def make_request(message):
-    r = requests.get('https://api.github.com/events')
+    r = requests.get('https://export.yandex.ru/weather-ng/forecasts/27612.xml')
+    #r = requests.get('https://api.github.com/events')
+    #print(r.text)
     bot.send_message(message.chat.id, r.encoding)
 
 @bot.message_handler(commands=['help'])
