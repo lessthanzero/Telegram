@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import config
+import random
 import telebot
 
 bot = telebot.TeleBot(config.token)
@@ -7,7 +8,12 @@ phrases = ['You talkin to me?', 'You talkin to me?', 'You talkin to me?', 'Well 
 
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
-    bot.reply_to(message, "Are you talking to me?")
+    photo = open('tmp/photo.png', 'rb')
+    bot.send_photo(message.chat.id, photo)
+
+@bot.message_handler(commands=['start'])
+def send_welcome(message):
+    bot.reply_to(message, phrases[random.randint(0, 7)])
 
 @bot.message_handler(commands=['help'])
 def send_welcome(message):
@@ -21,7 +27,8 @@ def handle_docs_audio(message):
 
 @bot.message_handler(content_types=["text"])
 def repeat_all_messages(message): # Название функции не играет никакой роли, в принципе
-    bot.send_message(message.chat.id, message.text)
+    #bot.send_message(message.chat.id, message.text)
+    bot.reply_to(message, phrases[random.randint(0, 7)])
 
 
 if __name__ == '__main__':
