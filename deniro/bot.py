@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import config
 import random
+import requests
 import telebot
 from telebot import types
 
@@ -27,6 +28,11 @@ def send_welcome(message):
     markup.row(itembtna, itembtnv)
     markup.row(itembtnc, itembtnd, itembtne)
     bot.send_message(message.chat.id, "Choose something:", reply_markup=markup)
+
+@bot.message_handler(commands=['request'])
+def make_request(message):
+    r = requests.get('https://api.github.com/events')
+    bot.send_message(message.chat.id, r.encoding)
 
 @bot.message_handler(commands=['help'])
 def send_welcome(message):
