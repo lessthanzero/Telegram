@@ -1,6 +1,6 @@
-#Creating bots in Telegram, Slack, Facebook Messenger.
+# Creating bots in Telegram, Slack, Facebook Messenger
 
-#Part I
+# Part I
 
 ## Telegram Bots API:
 
@@ -92,3 +92,28 @@ http://telegram.me/YTranslateBot — Yandex Translator
 - Installed python3: `brew install python3`
 - Installed pytelegrambotapi: `pip3 install pytelegrambotapi`
 - Account in [Heroku](https://www.heroku.com/) or access to personal server with Python 3 support
+
+# Part II
+
+## Connecting to external APIs
+
+## Bot analytics
+
+## Uploading to server
+
+### Personal hosting
+
+1. Upload files to your hosting (It should support programming language of choice. In our case it's _Python_).
+2. Check if necessary modules (i. e. _pytelegrambotapi_) installed or could be installed via tech support.
+3. Check if bot works.
+4. If it's not, double-check if it works from your computer.
+
+### Working with Heroku (more here: http://gnclmorais.com/blog/deploy-your-python-bot-to-heroku/)
+
+1. Log in to [Heroku](https://heroku.com)
+2. Create new app and give it a clear name
+3. Select "Deploy" tab
+4. Select Dropbox, connect your Dropbox account
+5. Place your code and necessary files in `Dropbox/Apps/Heroku/[name of your Heroku app]`
+6. Specify `heroku/python` buildpack in app "Settings" tab
+7. Go back to "Deploy" and click "Deploy" button
