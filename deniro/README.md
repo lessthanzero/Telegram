@@ -70,7 +70,6 @@ https://itunes.apple.com/us/app/quartz-news-in-a-whole-new-way/id1076683233?mt=8
 http://azumbrunnen.me — personal site emulating chat room
 
 
-
 ## Telegram bots:
 
 https://telegram.me/sapsanasapbot — Sapsan ticket search
@@ -93,11 +92,18 @@ http://telegram.me/YTranslateBot — Yandex Translator
 - Installed pytelegrambotapi: `pip3 install pytelegrambotapi`
 - Account in [Heroku](https://www.heroku.com/) or access to personal server with Python 3 support
 
+
 # Part II
 
 ## Connecting to external APIs
 
+
+
 ## Bot analytics
+
+1. http://botan.io/#botan_steps
+2. https://github.com/botanio/sdk
+
 
 ## Uploading to server
 
