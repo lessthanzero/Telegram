@@ -7,7 +7,7 @@
 import config
 import random
 import requests
-import xml.etree.ElementTree as etree
+import json
 import telebot
 import botan # class for bot metrics
 from telebot import types
@@ -67,12 +67,11 @@ def send_welcome(message):
 
 # Making a request to external API
 
-@bot.message_handler(commands=['request'])
+@bot.message_handler(commands=['weather'])
 def make_request(message):
     r = requests.get('http://api.openweathermap.org/data/2.5/forecast/city?q=Moscow,ru&APPID='+config.openweather_token+'')
-    #root = etree.parse(r.text).getroot()
-    print(r.json().city)
-    #bot.send_message(message.chat.id, root.tag)
+    weather = r.json()['list'][0]['weather'][0]['main']
+    bot.send_message(message.chat.id, weather)
 
 # Command handling with a reply message
 
