@@ -7,7 +7,7 @@
 import config
 import random
 import requests
-#import xml.etree.ElementTree as etree
+import xml.etree.ElementTree as etree
 import telebot
 import botan # class for bot metrics
 from telebot import types
@@ -21,6 +21,13 @@ bot = telebot.TeleBot(config.token)
 # In this example we're creating an array of random phrases
 phrases = ['You talkin to me?', 'You talkin to me?', 'You talkin to me?', 'Well then who the hell else are you talkin’ to?', 'You talkin’ to me?', 'Well I’m the only one here. Who the fuck do you think you’re talkin’ to?', 'Oh yea? Huh?', 'Okay. Huh?']
 
+# Set lambda
+ns = lambda tag: "{http://weather.yandex.ru/forecast}" + tag # add namespac
+
+# Data class
+class Data(dict):
+    def __missing__(self, key):
+        return root.find(ns('fact')).findtext(ns(key))
 
 # Command handler: reply and send photo
 
@@ -62,10 +69,10 @@ def send_welcome(message):
 
 @bot.message_handler(commands=['request'])
 def make_request(message):
-    r = requests.get('https://export.yandex.ru/weather-ng/forecasts/27612.xml')
-    #r = requests.get('https://api.github.com/events')
-    #print(r.text)
-    bot.send_message(message.chat.id, r.encoding)
+    r = requests.get('http://api.openweathermap.org/data/2.5/forecast/city?q=Moscow,ru&APPID='+config.openweather_token+'')
+    #root = etree.parse(r.text).getroot()
+    print(r.json().city)
+    #bot.send_message(message.chat.id, root.tag)
 
 # Command handling with a reply message
 
@@ -77,7 +84,6 @@ def send_welcome(message):
 
 @bot.message_handler(content_types=['document', 'audio'])
 def handle_docs_audio(message):
-    #pass
     bot.reply_to(message, "Why are you showing this to me?")
 
 # Simple conditions in user message parser
