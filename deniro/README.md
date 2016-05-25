@@ -77,9 +77,18 @@ https://telegram.me/sapsanasapbot — Sapsan ticket search
 http://telegram.me/meduzaprobot — meduza.io
 http://telegram.me/nplusone_bot — N+1
 
-
 http://telegram.me/weatherman_bot — weather bot
 http://telegram.me/delorean_bot — reminders
 http://telegram.me/PronunciationBot — text to voice
 http://telegram.me/Hotelrobot — book hotels
-http://telegram.me/YTranslateBot — Yandex translator
+http://telegram.me/YTranslateBot — Yandex Translator  
+
+
+# Pre-requisites for part II  
+
+- Code editor of choice
+- Token and set up bot from [BotFather](http://telegram.me/BotFather)
+- Installed [Homebrew](http://brew.sh) (on Mac)
+- Installed python3: `brew install python3`
+- Installed pytelegrambotapi: `pip3 install pytelegrambotapi`
+- Account in [Heroku](https://www.heroku.com/) or access to personal server with Python 3 support
