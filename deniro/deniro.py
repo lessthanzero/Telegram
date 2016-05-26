@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 # Simple Bot to reply to Telegram messages
@@ -49,12 +48,13 @@ def echo(bot, update_id):
         if text:
 
             botan_token = config.botan_token # Token got from @botaniobot
-            uid = update.message.from_user
+            uid = update.message.from_user.id
             message_dict = update.message.to_dict()
             event_name = update.message.text
-            print botan.track(botan_token, uid, message_dict, event_name)
+            print uid
             original_url = 'http://yandex.ru' # some url you want to send to user
             short_url = botan.shorten_url(original_url, botan_token, uid)
+            print short_url
             # # Reply to the message
             bot.sendMessage(chat_id=chat_id, text=short_url)
 
