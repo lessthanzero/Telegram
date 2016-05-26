@@ -6,6 +6,7 @@
 
 import config
 import logging
+import json
 import telegram
 import botan
 from telegram.error import NetworkError, Unauthorized
@@ -42,20 +43,20 @@ def echo(bot, update_id):
         # chat_id is required to reply to any message
         chat_id = update.message.chat_id
         update_id = update.update_id + 1
-        message = update.message.text
+        text = update.message.text
+        print update
 
-        if message:
+        if text:
 
             botan_token = config.botan_token # Token got from @botaniobot
-            uid = message.from_user
-            message_dict = message.to_dict()
+            uid = update.message.from_user
+            message_dict = update.message.to_dict()
             event_name = update.message.text
             print botan.track(botan_token, uid, message_dict, event_name)
-
             original_url = 'http://yandex.ru' # some url you want to send to user
             short_url = botan.shorten_url(original_url, botan_token, uid)
-            # Reply to the message
-            bot.sendMessage(chat_id=chat_id, text=message)
+            # # Reply to the message
+            bot.sendMessage(chat_id=chat_id, text=short_url)
 
     return update_id
 
