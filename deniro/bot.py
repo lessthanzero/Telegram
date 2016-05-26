@@ -37,20 +37,6 @@ def send_welcome(message):
     bot.reply_to(message, phrases[random.randint(0, 7)])
     bot.send_photo(message.chat.id, photo)
 
-
-# Get metrics
-
-# @bot.message_handler(commands=['metrics'])
-# def send_welcome(message):
-#     # Start metrics
-#     uid = message.from_user
-#     # message_dict = message.to_dict()
-#     # event_name = update.message.text
-#     print(botan.track(config.botan_token, uid, message, 'Message'))
-#     original_url = 'http://yandex.ru' # some url you want to send to user
-#     short_url = botan.shorten_url(original_url, config.botan_token, uid)
-#     bot.send_message(message.chat.id, short_url)
-
 # Display custom 'keyboard'
 
 @bot.message_handler(commands=['keyboard'])
@@ -65,7 +51,7 @@ def send_welcome(message):
     markup.row(itembtnc, itembtnd, itembtne)
     bot.send_message(message.chat.id, "Choose something:", reply_markup=markup)
 
-# Making a request to external API
+# Making a request to external API (weather service in our case)
 
 @bot.message_handler(commands=['weather'])
 def make_request(message):
