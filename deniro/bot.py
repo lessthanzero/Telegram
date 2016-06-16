@@ -1,5 +1,3 @@
-# Set encoding like 'charset' in HTML
-
 # -*- coding: utf-8 -*-
 
 # Import external files/classes
@@ -9,7 +7,6 @@ import random
 import requests
 import json
 import telebot
-import botan # class for bot metrics
 from telebot import types
 
 
@@ -21,13 +18,6 @@ bot = telebot.TeleBot(config.token)
 # In this example we're creating an array of random phrases
 phrases = ['You talkin to me?', 'You talkin to me?', 'You talkin to me?', 'Well then who the hell else are you talkin’ to?', 'You talkin’ to me?', 'Well I’m the only one here. Who the fuck do you think you’re talkin’ to?', 'Oh yea? Huh?', 'Okay. Huh?']
 
-# Set lambda
-ns = lambda tag: "{http://weather.yandex.ru/forecast}" + tag # add namespac
-
-# Data class
-class Data(dict):
-    def __missing__(self, key):
-        return root.find(ns('fact')).findtext(ns(key))
 
 # Command handler: reply and send photo
 
@@ -57,6 +47,7 @@ def send_welcome(message):
 def make_request(message):
     r = requests.get('http://api.openweathermap.org/data/2.5/forecast/city?q=Moscow,ru&APPID='+config.openweather_token+'')
     weather = r.json()['list'][0]['weather'][0]['main']
+    print(weather)
     bot.send_message(message.chat.id, weather)
 
 # Command handling with a reply message
