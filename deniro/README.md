@@ -107,6 +107,9 @@ http://telegram.me/YTranslateBot — Yandex Translator
 
 ## Uploading to server
 
+Useful wiki here: https://github.com/python-telegram-bot/python-telegram-bot/wiki/Where-to-host-Telegram-Bots
+
+
 ### Personal hosting
 
 1. Upload files to your hosting (It should support programming language of choice. In our case it's _Python_).
