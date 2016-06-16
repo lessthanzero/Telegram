@@ -107,8 +107,6 @@ http://telegram.me/YTranslateBot — Yandex Translator
 
 ## Uploading to server
 
-Useful wiki here: https://github.com/python-telegram-bot/python-telegram-bot/wiki/Where-to-host-Telegram-Bots
-
 
 ### Personal hosting
 
@@ -126,3 +124,17 @@ Useful wiki here: https://github.com/python-telegram-bot/python-telegram-bot/wik
 5. Place your code and necessary files in `Dropbox/Apps/Heroku/[name of your Heroku app]`
 6. Specify `heroku/python` buildpack in app "Settings" tab
 7. Go back to "Deploy" and click "Deploy" button
+
+## Creating bots with Codenvy
+
+1. Test your bot locally
+2. If it works, make a zip file of your bot project directory. Remember not to include your config with tokens into archive
+3. Create account at [Codenvy](https://codenvy.com/)
+4. Create project from zip (put your zip file into public cloud, i. e. Dropbox). Make it private.
+5. Open project in IDE
+6. Create file `requirements.txt` in root. Include pip packages names into it — each on a separate line.\n
+For example: \n
+`request \n
+python-telegram-bot`
+7. Rename your main running file (here, `deniro.py` OR `bot.py`) to `main.py`
+8. In bottom left corner select `Runners — Config` and select either `Python3.4` or `Python2.7` depending on what version you used in your main running file.
